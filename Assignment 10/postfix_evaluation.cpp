@@ -111,9 +111,96 @@ int precendence(char c){
 
     else
     {
-        return -222;
+        return -1;
     } 
-}
+};
 
 
 // the program is not completed till now
+
+int isOparator(char op){
+    if (op == '+' || op == '-' || op == '*' || op == '/')
+    {
+        return 1;
+    }
+
+    else
+    {
+        return -1;
+    }
+}
+
+int isOperand(char op){
+    if (op >= '0' && op <= '9')
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+    
+    
+}
+
+int getop(char op){
+    int x;
+    x = op;
+    return int(x -'0');
+}
+
+int operation(int a, int b, char op){
+
+    if (op == '+')
+    {
+        return b + a;
+    }
+    else if (op == '-')
+    {
+        return b - a;
+    }
+    else if (op == '*')
+    {
+        return b * a;
+    }
+    else if (op == '/')
+    {
+        return b / a;
+    }
+    else
+    {
+        return -22;
+    } 
+}
+
+int main(){
+
+    Stack st;
+    string s1;
+    int a, b;
+
+    cout << "Enter the string" << endl;
+    cin >> s1;
+
+    int l = s1.length();
+
+    for(int i = 0; i < l; i++){
+        if (isOparator(i) != -1)
+        {
+            a = st.peek();
+            st.pop();
+            b = st.peek();
+            st.pop();
+            st.push(operation(a, b, i));
+
+        }
+        else if (isOperand(i) == 1)
+        {
+            st.push(getop(i));
+        }
+    }
+    // st.pop();
+    cout << st.top;
+    
+    return 0;
+}
