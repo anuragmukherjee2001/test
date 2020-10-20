@@ -205,20 +205,7 @@ int main(){
 
     int l = s1.length();
 
-    // for (int i = 0; i < l; i++)
-    // {
-    //     st.push(i);
-    // }
-    // for (int i = 0; i < l; i++)
-    // {
-    //     int a = st.pop();
-    //     st2.push(a);
-    // }
-
-    // for (int i = 0; i < l; i++)
-    // {
-    //     cout << st2.peek();
-    // }
+    
 
     for (int i = 0; i < l; i++)
     {
@@ -279,18 +266,14 @@ int main(){
         }       
     }
 
-    // for (int i = 0; i < l; i++)
-    // {
-    //     st.push(i);
-    // }
-    // for (int i = 0; i < l; i++)
-    // {
-    //     int a = st.pop();
-    //     st2.push(a);
-    // }
+    
+    int l2 = s2.length();
 
-
-    cout << s2 <<endl;
+    for (int i = l2; i >= 0 ; i--) {
+        cout <<s2[i];
+    }
+    
+    // cout << s2 <<endl;
     
     return 0;
 }

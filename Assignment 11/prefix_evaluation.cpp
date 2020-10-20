@@ -96,45 +96,23 @@ class Stack{
     }       
 };
 
-
-// int precendence(char c){
-
-//     if (c == '*' || c == '/')
-//     {
-//         return 1;
-//     }
-
-//     else if (c == '+' || c == '-')
-//     {
-//         return 0;
-//     }
-
-//     else
-//     {
-//         return -1;
-//     } 
-// };
-
-
-// the program is not completed till now
-
 int main(){
 
     Stack st;
     string s1, s2;
-    int j,c,a,b;
+    int j,c;
 
     cout << "Enter the expression" << endl;
     cin >> s1;
 
     int l = s1.length();
 
-    // for (int i = 0; i < l/2; i++)
-    // {
-    //     char t = s1[i];
-    //     s1[i] = s1[l - i - 1];
-    //     s1[l - i - 1] = t;
-    // }
+    for (int i = 0; i < l/2; i++)
+    {
+        char t = s1[i];
+        s1[i] = s1[l - i - 1];
+        s1[l - i - 1] = t;
+    }
 
     while (s1[j] != '\0')
     {
@@ -146,8 +124,8 @@ int main(){
 
         else if (s1[j] == '+' || s1[j] == '-' || s1[j] == '*' || s1[j] == '/')
         {
-            a = st.pop();
-            b = st.pop();
+            int a = st.pop();
+            int b = st.pop();
 
             switch (s1[j])
             {
@@ -176,94 +154,6 @@ int main(){
         j++;
     }
     
-    cout << st.pop() << endl;
-    // cout << a;
+    cout << st.peek() << endl;
     return 0;
 }
-
-// int isOparator(char op){
-//     if (op == '+' || op == '-' || op == '*' || op == '/')
-//     {
-//         return 1;
-//     }
-
-//     else
-//     {
-//         return -1;
-//     }
-// }
-
-// int isOperand(char op){
-//     if (op >= '0' && op <= '9')
-//     {
-//         return 1;
-//     }
-//     else
-//     {
-//         return -1;
-//     }
-    
-    
-// }
-
-// int getop(char op){
-//     int x;
-//     x = op;
-//     return int(x -'0');
-// }
-
-// int operation(int a, int b, char op){
-
-//     if (op == '+')
-//     {
-//         return b + a;
-//     }
-//     else if (op == '-')
-//     {
-//         return b - a;
-//     }
-//     else if (op == '*')
-//     {
-//         return b * a;
-//     }
-//     else if (op == '/')
-//     {
-//         return b / a;
-//     }
-//     else
-//     {
-//         return -22;
-//     } 
-// }
-
-// int main(){
-
-//     Stack st;
-//     string s1;
-//     int a, b;
-
-//     cout << "Enter the string" << endl;
-//     cin >> s1;
-
-//     int l = s1.length();
-
-//     for(int i = 0; i < l; i++){
-//         if (isOparator(i) != -1)
-//         {
-//             a = st.peek();
-//             st.pop();
-//             b = st.peek();
-//             st.pop();
-//             st.push(operation(a, b, i));
-
-//         }
-//         else if (isOperand(i) == 1)
-//         {
-//             st.push(getop(i));
-//         }
-//     }
-//     // st.pop();
-//     cout << st.top;
-    
-//     return 0;
-// }
