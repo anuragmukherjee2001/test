@@ -24,17 +24,6 @@ int isPalindrome(char s[], int left, int right){
     }
 }
 
-int res(char s[]){
-    int n = strlen(s);
-
-    if (n == 0)
-    {
-        return 1;
-    }
-
-    return isPalindrome(s, 0, n -1);
-    
-}
 
 
 int main(){
@@ -43,8 +32,9 @@ int main(){
     char s[100];
     cout << "Enter the string" << endl;
     cin >> s;
+    int n = strlen(s);
 
-    if (res(s))
+    if (isPalindrome(s, 0, n - 1))
     {
         cout << "The string is palindrome";
     }

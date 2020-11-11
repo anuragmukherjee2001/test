@@ -4,7 +4,7 @@
 using namespace std;
 
 char first_upper(string str, int i = 0){
-    // int i = str.length();
+    
     if (str[i] == '\0')
     {
         return 0;
