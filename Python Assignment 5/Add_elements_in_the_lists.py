@@ -16,5 +16,5 @@ def using_standard_function():
 
     print("Sum of the elements in the list is", total)
 
-# sum_of_all_elements()  
+sum_of_all_elements()  
 using_standard_function()  
