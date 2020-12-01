@@ -1,50 +1,87 @@
 #include<iostream>
 using namespace std;
 
-int countSort(int arr[], int n, int o){
+void show(int a[],int n)
+{
+	for(int i=0;i<n;i++)
+		cout<<a[i]<<" ";
+	
+}
+int max_number(int arr[], int n){
+    int max = 0;
 
-    int i, j, k, pass;
-    int c[0 + 1];
-
-
-    for(int i = 0; i < o+1; i++)
+    for (int i = 0; i < n; i++)
     {
-        c[i] = 0;
-    }
-
-    for(int i = 0; i < n; i++){
-        pass++;
-        c[arr[i]] += 1;
-    }
-
-    for (int i = 1; i < o+1; i++)
-    {
-        c[i] += c[i - 1];
-    }
-
-    for (int j = 0; j < c[0]; j++)
-    {
-        arr[j] = 0;
-    }
-    
-    for (int i = 0; i < o + 1; i++)
-    {
-        for (int j = c[i - 1]; j < c[i]; j++)
+        if (max < arr[i])
         {
-            arr[j] = i;
-            pass++;
+            max = arr[i];
         }
     }
-    return pass;
-
-
-
+    return max;
 }
-int main(){
-    int arr[100];
-    int n;
 
-    cout << "Enter the number of elements " << endl;
+void countSort(int arr[], int n){
+    int pass;
+
+    int max = max_number(arr, n);
+    int count[max + 1];
+
+    int i, j;
+
+    for (int i = 0; i < max + 1; i++)
+    {
+        count[i] = 0;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        pass++;
+        count[arr[i]]++;
+    }
+
+    cout << endl;
+
+    // cout<<"Count array "<<endl;
+	// show(count,max + 1);
+
+    show(arr, n);
+    
+    i = 0;
+    j = 0;
+
+    while (i <= max)
+    {
+        
+        if(count[i] > 0){
+            arr[j] = i;
+            count[i]--;
+            j++;
+            pass++;
+            cout << endl;
+
+            cout<<"Count array "<<endl;
+	        show(count,max + 1);
+            
+            cout << endl;
+
+            cout << "Output array " << endl;
+            show(arr, n);
+        }
+
+        else
+        {
+            i++;
+        }   
+    }
+    cout << endl;
+    cout << "Number of passes are: " << pass << endl;
+}
+
+int main(){
+
+    int arr[100], n;
+
+    cout << "Enter the number of elemens : " << endl;
     cin >> n;
 
     cout << "Enter the elements" << endl;
@@ -54,12 +91,14 @@ int main(){
         cin >> arr[i];
     }
 
-    countSort(arr, n, 10);
+    cout << "The array before sorting" << endl;
+    show(arr, n);
+    countSort(arr, n);
+    cout << endl;
 
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    
+    cout << "The array after sorting " << endl;
+    show(arr, n);
+
     return 0;
+    
 }
