@@ -11,12 +11,6 @@ int get_max(int arr[], int n)
     return max; 
 } 
  
-void print(int arr[], int n) 
-{ 
-    for (int i = 0; i < n; i++) 
-        cout << arr[i] << " "; 
-} 
-
 void countSort(int arr[], int n, int exp) 
 { 
     int output[n]; 
@@ -46,19 +40,18 @@ void countSort(int arr[], int n, int exp)
 
 void radixsort(int arr[], int n) 
 { 
-    // int c;
-
+    
     int m = get_max(arr, n); 
  
-    for (int exp = 1; m / exp > 0; exp *= 10) {
+    for (int exp = 1; m / exp > 0; exp *= 10) 
         countSort(arr, n, exp); 
-		// c++;
-		print(arr, n);
-		cout << endl;
-	}	
 } 
 
-
+void print(int arr[], int n) 
+{ 
+    for (int i = 0; i < n; i++) 
+        cout << arr[i] << " "; 
+} 
  
 int main() 
 { 

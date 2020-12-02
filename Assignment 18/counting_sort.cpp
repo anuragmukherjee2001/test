@@ -41,9 +41,6 @@ void countSort(int arr[], int n){
 
     cout << endl;
 
-    // cout<<"Count array "<<endl;
-	// show(count,max + 1);
-
     show(arr, n);
     
     i = 0;
