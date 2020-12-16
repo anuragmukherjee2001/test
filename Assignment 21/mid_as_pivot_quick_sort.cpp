@@ -2,6 +2,7 @@
 using namespace std;
 
 int count = 0;
+int pass = 1;
 
 void swap(int *x,int *y){
 
@@ -10,9 +11,9 @@ void swap(int *x,int *y){
     *x = temp;
 }
 
-void printArray(int arr[], int n){
+void printArray(int arr[], int low, int high){
     int i = 0;
-    for(i = 0; i < n; i++){
+    for(i = low; i < high; i++){
 
     cout<<arr[i]<<" ";
     }
@@ -25,8 +26,9 @@ int partition(int arr[], int low, int high){
     int left = low - 1;
     int right = high;
     int pivot = arr[(low + high)/2];
+    
 
-    while(left < right){
+    while(left < right && ++count){
         do
         {
             left++;
@@ -35,13 +37,20 @@ int partition(int arr[], int low, int high){
         do
         {
             right--;
-        } while (right >= low && arr[right]> pivot);
+        } while (right >= low && arr[right]> pivot && ++count);
         if (left < right)
         {
             swap(arr[left], arr[right]);
         }
-        
+        cout << "Swapping: " << endl;
+        cout << "Pass = " << pass << endl;
+        printArray(arr, low, high);
+        cout << endl;
+        pass++;
     }
+    cout << endl;
+    cout << "Comparison " << count;
+    cout << endl;
     return right;
 }
 
@@ -72,7 +81,7 @@ int main(void){
 
     cout << "The elements of the array are " << endl;
 
-    printArray(arr,n);
+    printArray(arr,0 , n);
 
     return 0;
 }

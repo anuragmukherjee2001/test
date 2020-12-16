@@ -10,9 +10,9 @@ void swap(int *x,int *y){
     *x = temp;
 }
 
-void printArray(int arr[], int n){
+void printArray(int arr[], int low, int high){
     int i = 0;
-    for(i = 0; i < n; i++){
+    for(i = low; i < high; i++){
 
     cout<<arr[i]<<" ";
     }
@@ -22,27 +22,27 @@ void printArray(int arr[], int n){
 }
 
 int partition(int arr[], int low,int high){
-      
-    cout<<endl;
+
     int pivot,i,j;
-    i=low-1;
-    pivot=arr[high-1];
+    i=low;
+    pivot=arr[high];
 
-    for(j=low; j < high - 1; j++){
-        printArray(arr,high);
+    for(j=low; j <= high - 1; j++){
 
-        if(arr[j]<=pivot){
-            i++;
+
+        if(arr[j]<pivot){
+            
             swap(&arr[i],&arr[j]);
-            count++;
+            i++;
+
         }
     }
-    swap(&arr[i+1],&arr[high-1]);
-    
-    // cout << endl;
-    // cout << count;
+    swap(&arr[high],&arr[i]);
 
-    return (i+1);
+    cout<<"Pivot ="<<pivot<<endl;
+    printArray(arr,low,high+1);
+
+    return i;
 
     
 }
@@ -51,7 +51,9 @@ void quickSort(int arr[],int low,int high)
     if (low < high)  
     {  
         int j = partition(arr, low, high);  
-        quickSort(arr,low,j);  
+        printArray(arr,low,j);
+            printArray(arr,j+1,high+1);
+        quickSort(arr,low,j - 1);  
         quickSort(arr, j+1, high);  
     }  
 }  
@@ -69,11 +71,11 @@ int main(void){
         cin >> arr[i];
     }
 
-    quickSort(arr, 0, n);
+    quickSort(arr, 0, n - 1);
 
     cout << "The elements of the array are " << endl;
 
-    printArray(arr,n);
+    printArray(arr,0, n);
 
     return 0;
 }

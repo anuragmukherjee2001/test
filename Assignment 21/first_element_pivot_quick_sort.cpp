@@ -2,6 +2,7 @@
 using namespace std;
 
 int count = 0;
+int swaps = 0;
 
 void swap(int *x,int *y){
 
@@ -10,9 +11,9 @@ void swap(int *x,int *y){
     *x = temp;
 }
 
-void printArray(int arr[], int n){
+void printArray(int arr[], int low, int high){
     int i = 0;
-    for(i = 0; i < n; i++){
+    for(i = low; i < high; i++){
 
     cout<<arr[i]<<" ";
     }
@@ -21,32 +22,34 @@ void printArray(int arr[], int n){
 
 }
 
-int partition(int arr[], int low, int high){
-
+int partition(int arr[], int low, int high)
+{
     int pivot = arr[low];
-    int left = low;
-    int right = high;
+    int i = low - 1, j = high + 1;
+ 
+    while (left < right) {
 
-    while (left < right)
-    {
-        do{
-            left++;
-        }while (arr[left] < pivot);
-    
-        do
-        {
-            right --;
-        } while (arr[right] > pivot);
+        do {
+            i++;
+        } while (arr[i] < pivot && ++count);
 
-    if (left < right){
+        do {
+            j--;
+        } while (arr[j] > pivot && ++count);
 
-        swap(arr[left], arr[right]);
+        if (i >= j)
+            return j;
+ 
+        swap(arr[i], arr[j]);
+        swaps++;
+
+        // cout << "Swapping:" << endl;
+        // printArray(arr, low, high);
+        cout<<"Pivot ="<<pivot<<endl;
+    printArray(arr,low,high+1);
     }
-
-    swap(arr[low], arr[right]);          
-    return right;
-
-    }
+    // cout << endl;
+    // cout << "The number of comparisons are: " << count; 
 }
 
 int QuickSort(int arr[], int low, int high){
@@ -54,7 +57,9 @@ int QuickSort(int arr[], int low, int high){
     if (low < high)
     {
         int j = partition(arr, low, high);
-        QuickSort(arr, low, j - 1);
+        printArray(arr,low,j);
+            // printArray(arr,j+1,high+1);
+        QuickSort(arr, low, j);
         QuickSort(arr, j + 1, high);
     }
     
@@ -73,11 +78,15 @@ int main(void){
         cin >> arr[i];
     }
 
-    QuickSort(arr, 0, n);
+    QuickSort(arr, 0, n - 1);
 
     cout << "The elements of the array are " << endl;
 
-    printArray(arr,n);
+    printArray(arr, 0, n);
+
+    cout << endl;
+    cout << "The number of comparisons are: " << count << endl;
+    cout << "The number of swaps are: " << swaps;
 
     return 0;
 }
