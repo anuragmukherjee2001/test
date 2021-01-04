@@ -21,9 +21,8 @@ class linked_list
 
     public:
 
-	void Insert_at_end(){
-		int n;
-		cout<<"Enter the value: ";
+	void Insert_at_end(int n){
+		
 		cin>>n;		
 
 		if(head == NULL){
@@ -62,7 +61,7 @@ class linked_list
 		int n;
 	
 		if(head == NULL){
-			Insert_at_end();
+			Insert_at_end(n);
 		}
 			
 		else{
@@ -216,17 +215,80 @@ class linked_list
         }
         head = prev;
     }
+
+	linked_list merge_sorted(linked_list, linked_list);
 };
 
-linked_list merge_sorted(linked_list lst1, linked_list lst2){
+linked_list linked_list :: merge_sorted(linked_list lst1, linked_list lst2){
+	linked_list o;
+	node *temp1 = lst1.head, *temp2 = lst2.head;
+	while(temp1!=NULL && temp2!=NULL){
+		if(temp1->data == temp2->data){
+			o.Insert_at_end(temp1->data);
 
-}
+			o.Insert_at_end(temp2->data);
+
+			temp1=temp1->next;
+
+			temp2=temp2->next;		
+					}
+		else if(temp1->data<temp2->data){
+			o.Insert_at_end(temp1->data);
+			temp1=temp1->next;
+		}
+		else{
+			o.Insert_at_end(temp2->data);
+			temp2=temp2->next;			
+		}
+	}
+	while(temp1!=NULL){
+			o.Insert_at_end(temp1->data);
+			temp1=temp1->next;		
+	}
+	while(temp2!=NULL){
+			o.Insert_at_end(temp2->data);
+			temp2=temp2->next;		
+	}
+	return o;
+	}
+
+	
 
 int main(void){
+	linked_list a,b;
+	int n1,n2,item;
+	cout << "Enter the number of items";
+	cin >> n1;
 
-	linked_list lst1, lst2;
+	for(int i = 0; i < n1; i++){
+		cout << "Enter the item";
+		cin >> item;
+		a.Insert_at_end(item);
+	}
 	
-    return 0;
+
+	a.Display();
+
+	cout << "Enter the number of items";
+	cin >> n2;
+
+	for(int i = 0; i < n2; i++){
+		cout << "Enter the item";
+		cin >> item;
+		b.Insert_at_end(item);
+	}
+	// b.Insert_at_end();
+	b.Display();
+	linked_list o = linked_list.merge_sorted(a,b);
+	cout<<"AFTER MERGING......."<<endl;
+	o.Display();
 }
+
+// int main(void){
+
+// 	linked_list lst1, lst2;
+	
+//     return 0;
+// }
 
 // This code is not completed
