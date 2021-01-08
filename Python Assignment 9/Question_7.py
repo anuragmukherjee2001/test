@@ -12,7 +12,7 @@ row = int(input("Enter the number of rows:"))
 col = int(input("Enter the number of columns:"))
 
 matrix1 = []
-matrix2 = []
+
 print("Enter the matrix:")
 
 
